@@ -4,17 +4,18 @@
 }
 
 html, body{
-    font-family: sys-ui;
+    font-family: system-ui;
     background-color: var(--main-bg-color);
     height:100%;
     margin:0;
     padding:0;
 }
 
-body{
+body, .drop-zone{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .upload-container{
@@ -29,4 +30,36 @@ body{
     border: 2px dashed var(--border-color);
     border-radius: 10px;
     margin:30px;
+
+}
+.icons-container {
+    width:75px;
+    height:100px;
+    position: relative;
+}
+
+.icons-container img{
+    width:75px;
+    position:absolute;
+    transform-origin: bottom;
+    transition: transform .250ms ease-in-out;
+}
+
+.icons-container .center{
+    z-index:2;
+}
+
+.icons-container .right , .icons-container .left{
+    filter: grayscale(0.5);
+}
+.dragged .icons-container .right{
+    transform: rotate(10deg) translateX(20px) scale(0.9);
+}
+
+.dragged .icons-container .left{
+    transform: rotate(-10deg) translateX(-20px) scale(0.9);
+}
+
+.dragged .icons-container .center{
+    transform: translateY(-5px);
 }
