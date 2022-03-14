@@ -1,24 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/style/style.css" />
     <title>weShare - Easy File Sharing</title>
-</head>
-<body>
-    <div class="upload-container">
-        <div class="drop-zone">
-            <div class="icons-container">
-                <img src="./assets/images/drop-zone-icon.svg" alt="Drop-zone-icon" class = "center" draggable="false">
-                <img src="./assets/images/drop-zone-icon.svg" alt="Drop-zone-icon" class = "left" draggable="false">
-                <img src="./assets/images/drop-zone-icon.svg" alt="Drop-zone-icon" class = "right" draggable="false">
-            </div>
-            <input type="file" id = "fileInput">
-            <div class="title">Drop your files here or <span class = "browseBtn">browse</span></div>
+  </head>
+  <body>
+    <section class="upload-container">
+      <div class="drop-zone">
+        <div class="icons-container">
+          <img
+            src="./assets/images/drop-zone-icon.svg"
+            alt="Drop-zone-icon"
+            class="center"
+            draggable="false"
+          />
+          <img
+            src="./assets/images/drop-zone-icon.svg"
+            alt="Drop-zone-icon"
+            class="left"
+            draggable="false"
+          />
+          <img
+            src="./assets/images/drop-zone-icon.svg"
+            alt="Drop-zone-icon"
+            class="right"
+            draggable="false"
+          />
         </div>
-    </div>
-<script src = "assets/script/script.js"></script>
-</body>
+        <input type="file" id="fileInput" />
+        <div class="title">
+          Drop your files here or <span class="browseBtn">browse</span>
+        </div>
+      </div>
+      <div class="progress-container">
+        <div class="bg-progress">
+          <div class="inner-container">
+            <div class="tilte">Uploading...</div>
+            <div class="percentage-container">
+              <span id="percent">0</span>%
+            </div>
+            <div class="progress-bar"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="assets/script/script.js"></script>
+  </body>
 </html>
