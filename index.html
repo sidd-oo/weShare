@@ -45,12 +45,27 @@
         </div>
       </div>
       <div class="sharing-container">
-        <p class="expire">Link expires in 24 hours</p>
+        <p class="expire">Link expires in 24 hrs</p>
         <div class="input-container">
           <input type="text" id="fileURL" readonly />
           <img src="./assets/images/copy-icon.svg" alt="" id="copyBtn"/>
         </div>
+        <p>Or Send Via Email</p>
+        <div class="email-container">
+          <form id="emailForm">
+            <div class="field">
+              <label for="sender">Your email</label>
+              <input type="email" name="from-email" id="sender" required>
+            </div>
+            <div class="field">
+              <label for="receiver">Reciever's email</label>
+              <input type="email" name="to-email" id="receiver" required>
+            </div>
+            <button type="submit">Send</button>
+          </form>
+        </div>
       </div>
+      
     </section>
     <script src="assets/script/script.js"></script>
   </body>

@@ -9,11 +9,13 @@ const percentDiv = document.querySelector("#percent");
 
 const fileURLInput = document.querySelector("#fileURL");
 const sharingContainer = document.querySelector(".sharing-container");
-const copyBtn = document.querySelector('#copyBtn');
+const copyBtn = document.querySelector("#copyBtn");
+
+const emailForm = document.querySelector("#emailForm");
 
 const host = "https://innshare.herokuapp.com/";
 const uploadURL = host + "api/files";
-// const uploadURL = host + "api/files"
+const emailURL = host + "api/files/send";
 
 dropZone.addEventListener("dragover", (e) => {
   e.preventDefault();
@@ -46,9 +48,9 @@ fileInput.addEventListener("change", () => {
 });
 
 copyBtn.addEventListener("click", () => {
-    fileURLInput.select();
-    document.execCommand("copy");
-})
+  fileURLInput.select();
+  document.execCommand("copy");
+});
 
 const uploadFile = () => {
   const file = fileInput.files[0];
@@ -85,4 +87,3 @@ const showLink = ({ file: url }) => {
   sharingContainer.style.display = "block";
   fileURLInput.value = url;
 };
-
