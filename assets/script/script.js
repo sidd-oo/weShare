@@ -12,6 +12,7 @@ const sharingContainer = document.querySelector(".sharing-container");
 const copyBtn = document.querySelector("#copyBtn");
 
 const emailForm = document.querySelector("#emailForm");
+const toast = document.querySelector(".toast");
 
 const host = "https://innshare.herokuapp.com/";
 const uploadURL = host + "api/files";
@@ -50,6 +51,7 @@ fileInput.addEventListener("change", () => {
 copyBtn.addEventListener("click", () => {
   fileURLInput.select();
   document.execCommand("copy");
+  showToast("Copied to clipboard!");
 });
 
 const uploadFile = () => {
@@ -68,6 +70,11 @@ const uploadFile = () => {
   };
 
   xhr.upload.onprogress = updateProgress;
+
+  xhr.upload.onerror = () => {
+    fileInput.value = "";
+    showToast(`Error in upload: ${xhr.statusText}`);
+  };
 
   xhr.open("POST", uploadURL);
   xhr.send(formData);
@@ -113,6 +120,18 @@ emailForm.addEventListener("submit", (e) => {
     .then(({ success }) => {
       if (success) {
         sharingContainer.style.display = "none";
+        showToast("Email Sent");
       }
     });
 });
+
+let toastTimer;
+const showToast = (msg) => {
+  toast.innerText = msg;
+  toast.style.transform = "translate(-50%,0)";
+
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.style.transform = "translate(-50%,60px)";
+  }, 2000);
+};
