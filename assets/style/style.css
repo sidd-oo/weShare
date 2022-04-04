@@ -246,3 +246,16 @@ p{
   height: 50vh;
   width: 50vw;
 }
+
+@media screen and (max-width: 900px) {
+  :root{
+    --container-width: 320px;
+  }
+  .upload-vector{
+    display: none;
+  }
+  .email-container .field{
+    flex-direction: column;
+    width: 300px;
+  }
+}
