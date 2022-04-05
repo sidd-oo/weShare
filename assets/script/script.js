@@ -17,6 +17,7 @@ const toast = document.querySelector(".toast");
 const host = "https://innshare.herokuapp.com/";
 const uploadURL = host + "api/files";
 const emailURL = host + "api/files/send";
+const maxAllowedSize = 100 * 1024 * 1024; // 100mb
 
 dropZone.addEventListener("dragover", (e) => {
   e.preventDefault();
@@ -55,10 +56,22 @@ copyBtn.addEventListener("click", () => {
 });
 
 const uploadFile = () => {
+  if(fileInput.files.length > 1) {
+    resetFileInput();
+    showToast("Only upload 1 file!");
+    return;
+  }
+  
   const file = fileInput.files[0];
-  const formData = new FormData();
+  if(file.size > maxAllowedSize){
+    showToast("Can't upload more than 100MB");
+    resetFileInput();
+    return;
+  }
 
   progressContainer.style.display = "block";
+
+  const formData = new FormData();
   formData.append("myfile", file);
 
   const xhr = new XMLHttpRequest();
@@ -72,7 +85,7 @@ const uploadFile = () => {
   xhr.upload.onprogress = updateProgress;
 
   xhr.upload.onerror = () => {
-    fileInput.value = "";
+    resetFileInput();
     showToast(`Error in upload: ${xhr.statusText}`);
   };
 
@@ -81,6 +94,7 @@ const uploadFile = () => {
 };
 
 const updateProgress = (e) => {
+
   const percentageProgress = Math.round((e.loaded / e.total) * 100);
   console.log(percentageProgress);
   bgProgress.style.width = `${percentageProgress}%`;
@@ -90,13 +104,16 @@ const updateProgress = (e) => {
 
 const onUploadSuccess = ({ file: url }) => {
   console.log(url);
-  fileInput.value = "";
+  resetFileInput();
   emailForm.elements[2].removeAttribute("disabled");
   progressContainer.style.display = "none";
   sharingContainer.style.display = "block";
   fileURLInput.value = url;
 };
 
+const resetFileInput =  ()=>{
+  fileInput.value = "";
+}
 emailForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const url = fileURLInput.value;
