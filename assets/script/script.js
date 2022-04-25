@@ -14,7 +14,7 @@ const copyBtn = document.querySelector("#copyBtn");
 const emailForm = document.querySelector("#emailForm");
 const toast = document.querySelector(".toast");
 
-const host = "https://we-share-backend.vercel.app/";
+const host = "https://we-share-frontend.vercel.app";
 const uploadURL = host + "api/files";
 const emailURL = host + "api/files/send";
 const maxAllowedSize = 100 * 1024 * 1024; // 100mb
